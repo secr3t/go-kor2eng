@@ -13,9 +13,20 @@ func TestRegex(t *testing.T) {
 }
 
 func TestKor2Eng(t *testing.T) {
-    fmt.Println(Kor2Eng("까 a b 나"))
+    converted := Kor2Eng("까 a b 나")
+    expected := "Rk a b sk"
+    assaultString(t, converted, expected)
 }
 
 func TestKor2EngWithBraces(t *testing.T) {
-    fmt.Println(Kor2EngWithBraces("안 h i 녕 하"))
+    converted:=Kor2EngWithBraces("안 h i 녕 하")
+    expected := "{dks} h i {sud} {gk}"
+    assaultString(t, converted, expected)
+}
+
+func assaultString(t *testing.T, converted string, expected string) {
+    t.Logf("converted: %s, expected: %s", converted, expected)
+    if converted != expected {
+        t.Error("converted not equals with expected.")
+    }
 }
